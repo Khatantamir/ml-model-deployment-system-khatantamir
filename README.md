@@ -17,30 +17,41 @@ This project simulates a real-world ML deployment workflow including:
 
 ---
 
+## API Demo
+
+FastAPI automatically generates interactive documentation that allows users to test the model directly from the browser.
+
+![API Demo](images/api-demo.png)
+
+The interface allows sending passenger data and receiving real-time predictions from the trained machine learning model.
+
+---
+
 ## Project Structure
 
-```
 ml-model-deployment-system-khatantamir
-│
-├── api
-│   └── main.py
-│
-├── data
-│   └── titanic.csv
-│
-├── models
-│   └── model.pkl
-│
-├── notebooks
-│
-├── src
-│   ├── train.py
-│   └── predict.py
-│
-├── Dockerfile
-├── requirements.txt
-└── README.md
-```
+
+├── api  
+│   └── main.py  
+│  
+├── data  
+│   └── titanic.csv  
+│  
+├── models  
+│   └── model.pkl  
+│  
+├── notebooks  
+│  
+├── src  
+│   ├── train.py  
+│   └── predict.py  
+│  
+├── images  
+│   └── api-demo.png  
+│  
+├── Dockerfile  
+├── requirements.txt  
+└── README.md  
 
 ---
 
@@ -56,9 +67,7 @@ The machine learning workflow includes the following steps:
 
 The trained model is saved as:
 
-```
 models/model.pkl
-```
 
 This serialized model is later used by the API to generate predictions.
 
@@ -68,14 +77,13 @@ This serialized model is later used by the API to generate predictions.
 
 The model uses the following passenger attributes:
 
-| Feature | Description |
-|------|------|
-| Pclass | Passenger ticket class |
-| Sex | Passenger gender |
-| Age | Passenger age |
-| SibSp | Number of siblings/spouses aboard |
-| Parch | Number of parents/children aboard |
-| Fare | Passenger fare |
+Feature | Description  
+Pclass | Passenger ticket class  
+Sex | Passenger gender  
+Age | Passenger age  
+SibSp | Number of siblings/spouses aboard  
+Parch | Number of parents/children aboard  
+Fare | Passenger fare  
 
 These inputs are used by the model to predict survival probability.
 
@@ -85,22 +93,16 @@ These inputs are used by the model to predict survival probability.
 
 To train the model run:
 
-```
 python src/train.py
-```
 
 After training the model will be saved to:
 
-```
 models/model.pkl
-```
 
 Example output:
 
-```
-Model accuracy: 0.81
-Model saved to models/model.pkl
-```
+Model accuracy: 0.81  
+Model saved to models/model.pkl  
 
 ---
 
@@ -108,15 +110,11 @@ Model saved to models/model.pkl
 
 Start the FastAPI server with:
 
-```
 python -m uvicorn api.main:app --reload
-```
 
 If the server starts successfully you will see:
 
-```
 Uvicorn running on http://127.0.0.1:8000
-```
 
 ---
 
@@ -126,9 +124,7 @@ FastAPI automatically generates interactive API documentation.
 
 Open the following URL in your browser:
 
-```
 http://127.0.0.1:8000/docs
-```
 
 This interface allows users to test the API directly from the browser.
 
@@ -138,30 +134,24 @@ This interface allows users to test the API directly from the browser.
 
 Endpoint:
 
-```
 POST /predict
-```
 
 Example request:
 
-```json
 {
-  "Pclass": 3,
-  "Sex": 1,
-  "Age": 22,
-  "SibSp": 1,
-  "Parch": 0,
-  "Fare": 7.25
+"Pclass": 3,
+"Sex": 1,
+"Age": 22,
+"SibSp": 1,
+"Parch": 0,
+"Fare": 7.25
 }
-```
 
 Example response:
 
-```json
 {
-  "prediction": "Did not survive"
+"prediction": "Did not survive"
 }
-```
 
 The API loads the trained model and returns a prediction based on the input passenger data.
 
@@ -171,9 +161,7 @@ The API loads the trained model and returns a prediction based on the input pass
 
 Install required libraries using:
 
-```
 pip install -r requirements.txt
-```
 
 Main libraries used:
 
@@ -191,21 +179,15 @@ This project also includes a Dockerfile for containerized deployment.
 
 Build the Docker image:
 
-```
 docker build -t ml-model-api .
-```
 
 Run the container:
 
-```
 docker run -p 8000:8000 ml-model-api
-```
 
 Then open:
 
-```
 http://localhost:8000/docs
-```
 
 ---
 
@@ -239,10 +221,7 @@ It highlights important ML engineering practices including:
 Khatantamir Otgonbyamba
 
 GitHub:
-
-```
 https://github.com/Khatantamir
-```
 
 ---
 
